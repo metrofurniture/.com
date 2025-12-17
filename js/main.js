@@ -1,86 +1,47 @@
-/*  ---------------------------------------------------
-    Theme Name: Staging
-    Description: Staging bootstrap tamplate
-    Author: Colorib
-    Author URI: https://www.colorib.com/
-    Version: 1.0
-    Created: Colorib
----------------------------------------------------------  */
+/*-----------------------
+    Hero Slider
+------------------------*/
+$(".hero__slider").owlCarousel({
+    loop: true,
+    margin: 0,
+    items: 1,
+    dots: true,
+    nav: true,
+    navText: [
+        "<i class='fa fa-angle-left'></i>",
+        "<i class='fa fa-angle-right'></i>"
+    ],
 
-'use strict';
+    // 🔥 FAST fade (key part)
+    animateOut: 'fadeOut',
+    animateIn: 'fadeIn',
+    smartSpeed: 250,          // ⬅ makes 02 phase VERY quick
+    autoplayTimeout: 5000,   // normal viewing time
 
-(function ($) {
+    autoHeight: false,
+    autoplay: true,
+    mouseDrag: false,
 
-    /*------------------
-        Preloader
-    --------------------*/
-    $(window).on('load', function () {
-        $(".loader").fadeOut();
-        $("#preloder").delay(100).fadeOut("slow");
-    });
+    onInitialized: function (e) {
+        var total = e.item.count;
+        $("#snh-1").html("<span>01</span><span>0" + total + "</span>");
+        $('.slider__progress span').css("width", (100 / total) + "%");
+    }
+})
+.on("changed.owl.carousel", function (e) {
 
-    /*------------------
-        Background Set
-    --------------------*/
-    $('.set-bg').each(function () {
-        var bg = $(this).data('setbg');
-        $(this).css('background-image', 'url(' + bg + ')');
-    });
+    var total = e.item.count;
+    var current = e.page.index + 1;
 
-    //Canvas Menu
-    $(".canvas__open").on('click', function () {
-        $(".offcanvas-menu-wrapper").addClass("active");
-        $(".offcanvas-menu-overlay").addClass("active");
-    });
+    // counter update (02 will flash very fast)
+    $("#snh-1").html(
+        "<span>0" + current + "</span><span>0" + total + "</span>"
+    );
 
-    $(".offcanvas-menu-overlay").on('click', function () {
-        $(".offcanvas-menu-wrapper").removeClass("active");
-        $(".offcanvas-menu-overlay").removeClass("active");
-    });
-
-
-    /*------------------
-		Navigation
-	--------------------*/
-    $(".mobile-menu").slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-    });
-
-    /*-----------------------
-        Hero Slider
-    ------------------------*/
-    $(".hero__slider").owlCarousel({
-        loop: true,
-        margin: 0,
-        items: 1,
-        dots: true,
-        nav: true,
-        navText: ["<i class='fa fa-angle-left'><i/>", "<i class='fa fa-angle-right'><i/>"],
-        animateOut: false,
-animateIn: false,
-smartSpeed: 300,
-
-        smartSpeed: 300,
-		  autoplayTimeout: 5000,
-        autoHeight: false,
-        autoplay: true,
-        mouseDrag: false,
-        onInitialized: function (e) {
-            var a = this.items().length;
-            $("#snh-1").html("<span>01</span><span>" + "0" + a + "</span>");
-            var presentage = Math.round((100 / a));
-            $('.slider__progress span').css("width", presentage + "%");
-        }
-    }).on("changed.owl.carousel", function (e) {
-        var b = --e.item.index,
-            a = e.item.count;
-        $("#snh-1").html("<span> " + "0" + (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + "0" + a + "</span>");
-
-        var current = e.page.index + 1;
-        var presentage = Math.round((100 / e.page.count) * current);
-        $('.slider__progress span').css("width", presentage + "%");
-    });
+    // progress bar animation
+    var percent = Math.round((100 / e.page.count) * current);
+    $('.slider__progress span').css("width", percent + "%");
+});
 
     /*--------------------------
         Project Slider

@@ -169,8 +169,8 @@
                         
                         <h2>Our Products</h2>
                         <div class="breadcrumb__links">
-                            <a href="./index.html">Home</a>
-                            <span>Projects</span>
+                            <a href="index.html">Home</a>
+                            <span>Products</span>
                         </div>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="project__item" data-category="Office Building">
                         <img src="img/project/p1.jpg" alt="">
-                        <h4><a href="#">Beds</a></h4>
+                        <h4><a href="bed.html">Beds</a></h4>
                     </div>
                 </div>
 
@@ -230,13 +230,7 @@
         </div>
 
         <!-- POPUP -->
-        <div id="popup">
-            <div class="popup-inner">
-                <span class="popup-close">&times;</span>
-                <h3 id="popup-title"></h3>
-                <div class="sub-images" id="sub-images-box"></div>
-            </div>
-        </div>
+       
     </section>
     <!-- ======= Furniture Features Section ======= -->
     <section class="project-page spad">
@@ -635,46 +629,7 @@
 
 
 
-<script>
-        document.addEventListener("DOMContentLoaded", () => {
 
-            const subImageList = {
-                "Office Building": ["img/project/bd1.jpg", "img/project/bd2.jpg","img/project/bd3.jpg","img/project/bd4.jpg","img/project/bd5.jpg","img/project/bd6.jpg","img/project/bd7.jpg","img/project/bd8.jpg","img/project/bd9.jpg","img/project/bd10.jpg","img/project/bd11.jpg","img/project/bd12.jpg","img/project/bd13.jpg","img/project/bd14.jpg","img/project/bd15.jpg","img/project/bd16.jpg","img/project/bd17.jpg","img/project/bd18.jpg","img/project/bd19.jpg","img/project/bd20.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg","img/project/bd1.jpg"],
-                "Furniture Decorative": ["img/sub/sof1.jpg", "img/sub/sof2.jpg","img/sub/sof3.jpg","img/sub/sof4.jpg","img/sub/sof5.jpg","img/sub/sof6.jpg","img/sub/sof7.jpg","img/sub/sof8.jpg","img/sub/sof9.jpg","img/sub/sof10.jpg","img/sub/sof11.jpg","img/sub/sof12.jpg","img/sub/sof13.jpg","img/sub/sof14.jpg","img/sub/sof15.jpg","img/sub/sof16.jpg","img/sub/sof17.jpg","img/sub/sof18.jpg","img/sub/sof19.jpg","img/sub/sof20.jpg","img/sub/sof21.jpg","img/sub/sof22.jpg","img/sub/sof23.jpg","img/sub/sof24.jpg"],
-                "Interior Design": ["img/sub/dt1.jpg", "img/sub/dt2.jpg","img/sub/dt3.jpg","img/sub/dt4.jpg","img/sub/dt5.jpg","img/sub/dt6.jpg","img/sub/dt7.jpg","img/sub/dt8.jpg","img/sub/dt9.jpg","img/sub/dt10.jpg","img/sub/dt11.jpg","img/sub/dt12.jpg","img/sub/dt13.jpg","img/sub/dt14.jpg","img/sub/dt15.jpg","img/sub/dt16.jpg","img/sub/dt17.jpg","img/sub/dt18.jpg","img/sub/dt19.jpg","img/sub/dt20.jpg"],
-                "Home Building": ["img/sub/cp1.jpg", "img/sub/cp2.jpg","img/sub/cp3.jpg","img/sub/cp4.jpg","img/sub/cp5.jpg","img/sub/cp6.jpg","img/sub/cp7.jpg","img/sub/cp8.jpg","img/sub/cp9.jpg","img/sub/cp10.jpg","img/sub/cp11.jpg","img/sub/cp12.jpg","img/sub/cp13.jpg","img/sub/cp14.jpg","img/sub/cp15.jpg","img/sub/cp16.jpg"],
-                "Decoration": ["img/sub/co1.jpg","img/sub/co2.jpg","img/sub/co3.jpg","img/sub/co4.jpg","img/sub/co5.jpg","img/sub/co6.jpg","img/sub/co7.jpg","img/sub/co8.jpg","img/sub/co9.jpg","img/sub/co10.jpg"],
-                "Furniture": ["img/sub/ct1.jpg","img/sub/ct2.jpg","img/sub/ct3.jpg","img/sub/ct4.jpg","img/sub/ct5.jpg","img/sub/ct6.jpg","img/sub/ct7.jpg","img/sub/ct8.jpg","img/sub/ct9.jpg","img/sub/ct10.jpg"]
-            };
-
-            const popup = document.getElementById("popup");
-            const titleBox = document.getElementById("popup-title");
-            const imageBox = document.getElementById("sub-images-box");
-
-            document.querySelectorAll(".project__item").forEach(item => {
-
-                item.addEventListener("click", () => {
-                    const category = item.getAttribute("data-category");
-                    const imgs = subImageList[category] || [];
-
-                    titleBox.textContent = category;
-                    imageBox.innerHTML = imgs
-                        .map(src => `<img src="${src}" alt="${category}">`)
-                        .join("");
-
-                    popup.style.display = "flex";
-                });
-            });
-
-            document.querySelector(".popup-close").addEventListener("click", () => {
-                popup.style.display = "none";
-            });
-
-            popup.addEventListener("click", (e) => {
-                if (e.target === popup) popup.style.display = "none";
-            });
-        });
-    </script>
 <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
         <div class="container">

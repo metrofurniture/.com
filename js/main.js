@@ -57,7 +57,10 @@
         dots: true,
         nav: true,
         navText: ["<i class='fa fa-angle-left'><i/>", "<i class='fa fa-angle-right'><i/>"],
-        
+        animateOut: false,
+animateIn: false,
+smartSpeed: 300,
+
         smartSpeed: 300,
 		  autoplayTimeout: 5000,
         autoHeight: false,

@@ -1,6 +1,6 @@
 /*  ---------------------------------------------------
     Theme Name: Staging
-    Description: Staging bootstrap tamplate
+    Description: Staging bootstrap template
     Author: Colorib
     Author URI: https://www.colorib.com/
     Version: 1.0
@@ -38,10 +38,9 @@
         $(".offcanvas-menu-overlay").removeClass("active");
     });
 
-
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
@@ -72,6 +71,15 @@
     }).on("changed.owl.carousel", function (e) {
         var b = --e.item.index,
             a = e.item.count;
+        
+        // Flash effect for slides 1 and 3
+        if (b === 1 || b === 2) {
+            $("body").addClass("flash");
+            setTimeout(function() {
+                $("body").removeClass("flash");
+            }, 300); // duration of the flash effect
+        }
+
         $("#snh-1").html("<span> " + "0" + (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + "0" + a + "</span>");
 
         var current = e.page.index + 1;
@@ -79,6 +87,18 @@
         $('.slider__progress span').css("width", presentage + "%");
     });
 
+    // Add CSS for flash effect
+    $('<style>')
+        .prop('type', 'text/css')
+        .html(`
+            body.flash {
+                background-color: white;
+                transition: background-color 0.1s;
+            }
+        `)
+        .appendTo('head');
+
+})(jQuery);
     /*--------------------------
         Project Slider
     ----------------------------*/

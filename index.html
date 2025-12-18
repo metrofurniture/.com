@@ -51,6 +51,14 @@
         max-width: 100%; /* Ensure images are responsive */
         height: auto; /* Maintain aspect ratio */
     }
+           .fade-in {
+        opacity: 0;
+        transition: opacity 2s ease; /* Transition for fading effect */
+        color: white; /* Initial color */
+    }
+    .visible {
+        opacity: 1; /* Full visibility */
+    }
     </style>
 <body>
     <!-- Page Preloder -->
@@ -122,46 +130,41 @@
     </header>
     <!-- Header Section End -->
 
-    <!-- Hero Section Begin -->
-    <section class="hero">
-        <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
-                <div class="hero__text">
-                    <h2>Excellence is our standard, Quality is our promise!</h2>
-                    <a href="product-details.html" class="primary-btn"> View Categories </a>
-                    <a href="products.html" class="more_btn">Discover more</a>
-                    <div class="hero__social">
-                              
-                          
-      
-                        <a href="https://www.facebook.com/share/1FipiYLaNQ/"><i class="fa fa-facebook"></i></a>
-                        
-                        <a href="https://www.instagram.com/metro_furniture_mirpur/"><i class="fa fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@metro_furniture_mirpur?_r=1&_t=ZS-928BcgYxznk" target="_blank" class="social-link">
-            <i class="fab fa-tiktok"></i> 
-                    </div>
-                </div>
-            </div>
-           <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
-                <div class="hero__text">
-                    <h2> Defining Quality Living Through Exceptional Design..</h2>
-                    <a href="products.html" class="primary-btn">See Products</a>
-                    <a href="products.html" class="more_btn">Discover more</a>
-                    
-                        
-                    <div class="hero__social">
-                        <a href="https://www.facebook.com/share/1FipiYLaNQ/"><i class="fa fa-facebook"></i></a>
-                        <a href="https://www.tiktok.com/@metro_furniture_mirpur?_r=1&_t=ZS-928BcgYxznk" target="_blank" class="social-link">
-            <i class="fab fa-tiktok"></i> 
-                        <a href="https://www.instagram.com/metro_furniture_mirpur/"><i class="fa fa-instagram"></i></a>
-                        
-                    </div>
+   <!-- Hero Section Begin -->
+<section class="hero">
+    <div class="hero__slider">
+        <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+            <div class="hero__text">
+                <h2 id="hero-text" class="fade-in">Excellence is our standard, Quality is our promise!</h2>
+                <a href="product-details.html" class="primary-btn"> View Categories </a>
+                <a href="products.html" class="more_btn">Discover more</a>
+                <div class="hero__social">
+                    <a href="https://www.facebook.com/share/1FipiYLaNQ/"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/metro_furniture_mirpur/"><i class="fa fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@metro_furniture_mirpur?_r=1&_t=ZS-928BcgYxznk" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="slide-num" id="snh-1"></div>
-        <div class="slider__progress"><span></span></div>
-    </section>
+        <div class="hero__items set-bg" data-setbg="img/hero/hero-1.jpg">
+            <div class="hero__text">
+                <h2 id="hero-text-2" class="fade-in"> Defining Quality Living Through Exceptional Design..</h2>
+                <a href="products.html" class="primary-btn">See Products</a>
+                <a href="products.html" class="more_btn">Discover more</a>
+                <div class="hero__social">
+                    <a href="https://www.facebook.com/share/1FipiYLaNQ/"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.tiktok.com/@metro_furniture_mirpur?_r=1&_t=ZS-928BcgYxznk" target="_blank" class="social-link">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://www.instagram.com/metro_furniture_mirpur/"><i class="fa fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="slide-num" id="snh-1"></div>
+    <div class="slider__progress"><span></span></div>
+</section>
     <!-- Hero Section End -->
 
     <!-- About Section Begin -->
@@ -892,6 +895,33 @@ function sendEmail(event) {
     
     window.open(gmailLink, '_blank'); // Open Gmail in a new tab with pre-filled data
 }
+  
+    const texts = [
+        "Excellence is our standard, Quality is our promise!",
+        "Defining Quality Living Through Exceptional Design.."
+    ];
+
+    let currentIndex = 0;
+    const heroText = document.getElementById('hero-text');
+
+    function changeText() {
+        // Fade out current text
+        heroText.classList.remove('visible');
+
+        // Wait for fade out to complete
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % texts.length; // Cycle through texts
+            heroText.textContent = texts[currentIndex]; // Update the text
+
+            // Fade in new text
+            heroText.classList.add('visible');
+        }, 2000); // Adjust timing to match the fade out duration
+    }
+
+    // Initial display
+    heroText.classList.add('visible');
+    setInterval(changeText, 5000); // Change text every 5 seconds
+
     
 </script>
     <script src="script.js"></script>

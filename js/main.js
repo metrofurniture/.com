@@ -1,6 +1,6 @@
 /*  ---------------------------------------------------
     Theme Name: Staging
-    Description: Staging bootstrap template
+    Description: Staging bootstrap tamplate
     Author: Colorib
     Author URI: https://www.colorib.com/
     Version: 1.0
@@ -38,6 +38,7 @@
         $(".offcanvas-menu-overlay").removeClass("active");
     });
 
+
     /*------------------
 		Navigation
 	--------------------*/
@@ -55,7 +56,7 @@
         items: 1,
         dots: true,
         nav: true,
-        navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+        navText: ["<i class='fa fa-angle-left'><i/>", "<i class='fa fa-angle-right'><i/>"],
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
         smartSpeed: 1500,
@@ -65,20 +66,17 @@
         onInitialized: function (e) {
             var a = this.items().length;
             $("#snh-1").html("<span>01</span><span>" + "0" + a + "</span>");
-            var percentage = Math.round((100 / a));
-            $('.slider__progress span').css("width", percentage + "%");
+            var presentage = Math.round((100 / a));
+            $('.slider__progress span').css("width", presentage + "%");
         }
     }).on("changed.owl.carousel", function (e) {
         var b = --e.item.index,
             a = e.item.count;
-        
-        // Skip the second item
-        var displayedItem = (b + 1 === 2) ? 3 : b + 1; // Adjust index for skipped item
-        $("#snh-1").html("<span>0" + displayedItem + "</span><span>0" + a + "</span>");
+        $("#snh-1").html("<span> " + "0" + (1 > b ? b + a : b > a ? b - a : b) + "</span><span>" + "0" + a + "</span>");
 
         var current = e.page.index + 1;
-        var percentage = Math.round((100 / e.page.count) * current);
-        $('.slider__progress span').css("width", percentage + "%");
+        var presentage = Math.round((100 / e.page.count) * current);
+        $('.slider__progress span').css("width", presentage + "%");
     });
 
     /*--------------------------
@@ -90,7 +88,7 @@
         items: 4,
         dots: false,
         nav: true,
-        navText: ["<span class='arrow_carrot-left'></span>", "<span class='arrow_carrot-right'></span>"],
+        navText: ["<span class='arrow_carrot-left'><span/>", "<span class='arrow_carrot-right'><span/>"],
         smartSpeed: 1200,
         autoHeight: false,
         autoplay: false,
@@ -109,7 +107,7 @@
             }
         }
     });
-})(jQuery);
+
     /*-----------------------------
         Testimonial Slider
     -------------------------------*/

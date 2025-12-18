@@ -227,6 +227,60 @@
     }
 </style>
 <!-- Hero Section End -->
+    <!-- Moving Text Section Begin -->
+<section class="moving-text-section" style="background: #333; color: white; overflow: hidden; position: relative;">
+    <div class="moving-text-bar" style="white-space: nowrap;">
+        <span class="moving-text">
+            Latest Offerings: Stylish Sofas | Elegant Dining Sets | Modern Coffee Tables | Chic Beddings | Contemporary Office Furniture |
+            Luxurious Recliners | Space-Saving Furniture | Vintage Decor | Customized Solutions | Premium Quality Service |
+            Quality Mattresses | Eco-Friendly Furniture | Sleek Wardrobes | Innovative Storage Solutions | Rustic Coffee Tables |
+            Designer Chairs | Multi-Functional Furniture | Trendy Accent Pieces | Beautiful Curtains | Cozy Throw Pillows |
+            Timeless Bed Frames | Charming Dressers | Functional Desks | Artistic Wall Units | Fashionable Rugs |
+            Comfortable Sectionals | Classic Bookcases | Unique Artwork Frames | Modern Lighting Fixtures | Durable Outdoor Furniture |
+        </span>
+    </div>
+</section>
+
+<style>
+    .moving-text-section {
+        height: 60px; /* Height for better visibility */
+        display: flex;
+        align-items: center;
+        border-top: 2px solid cadmiumyellow;
+        border-bottom: 2px solid cadmiumyellow;
+        background: #333; /* Dark background for contrast */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .moving-text-bar {
+        position: absolute;
+        animation: moveText 50s linear infinite; /* Slower movement */
+        font-size: 20px;
+        color: white;
+        padding: 10px 0;
+        text-shadow: 0 0 5px orange, 0 0 10px yellow; /* Sparkling effect */
+        border: 2px solid orange; /* Outline color */
+        border-radius: 5px;
+        box-shadow: 0 0 10px white; /* Glow effect */
+        left: 50%; /* Start position center of the screen */
+        transform: translateX(-50%); /* Center the bar */
+    }
+
+    .moving-text {
+        display: inline-block;
+    }
+
+    @keyframes moveText {
+        0% {
+            transform: translateX(-50%); /* Start from the center */
+        }
+        100% {
+            transform: translateX(-150%); /* Move to the left side */
+        }
+    }
+</style>
+<!-- Moving Text Section End -->
 
     <!-- About Section Begin -->
     <section class="about spad">

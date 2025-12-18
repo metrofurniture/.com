@@ -39,8 +39,8 @@
     });
 
     /*------------------
-		Navigation
-	--------------------*/
+        Navigation
+    --------------------*/
     $(".mobile-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
@@ -71,10 +71,11 @@
     }).on("changed.owl.carousel", function (e) {
         var b = --e.item.index,
             a = e.item.count;
-        
-        // Skip the second item
-        var displayedItem = (b + 1 === 2) ? 3 : b + 1; // Adjust index for skipped item
-        $("#snh-1").html("<span>0" + displayedItem + "</span><span>0" + a + "</span>");
+
+        // Change only backward and skip the second item
+        var displayedIndex = (b % 2 === 0) ? b : b === 1 ? 0 : 2; // Show 0 or 2 in the UI
+
+        $("#snh-1").html("<span>0" + (displayedIndex + 1) + "</span><span>0" + a + "</span>");
 
         var current = e.page.index + 1;
         var percentage = Math.round((100 / e.page.count) * current);

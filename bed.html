@@ -7,11 +7,26 @@
     <meta name="keywords" content="Staging, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <meta http-equiv="Cache-Control" content="public, max-age=31536000"> <!-- Cache for 1 year -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000"> <!-- Cache for 1 year -->
     <meta http-equiv="Expires" content="Wed, 21 Oct 2026 07:28:00 GMT"> <!-- Specify a future date -->
     <meta http-equiv="Pragma" content="cache"> <!-- For HTTP/1.0 compatibility -->
     <title>Beds</title>
-      <style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+    
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
@@ -31,17 +46,17 @@
         }
 
         .gallery-item {
-            position: relative; /* For positioning the splash effect */
+            position: relative; /* Ensure this is set for the splash effect */
             margin: 10px;
         }
 
         .gallery img {
             width: 150px; /* Adjust image size */
             height: 150px; /* Adjust image size */
-            border-radius: 10px; /* Rounded corners for images */
+            border: 5px solid white; /* White outline */
+            border-radius: 0; /* Square corners */
             cursor: pointer;
             transition: transform 0.2s; /* Smooth scaling effect */
-            z-index: 1; /* Image above splash */
         }
 
         .gallery img:hover {
@@ -51,15 +66,15 @@
         /* Continuous moving black splash effect */
         .splash-effect {
             position: absolute;
-           top: -5px; /* Move it slightly outside the top */
-    left: -5px; /* Move it slightly outside the left */
-    right: -5px; /* Move it slightly outside the right */
-    bottom: -5px; /* Move it slightly outside the bottom */
-            border-radius: 10px; /* Match corner rounding */
+            top: -5px; /* Move it slightly outside the top */
+            left: -5px; /* Move it slightly outside the left */
+            right: -5px; /* Move it slightly outside the right */
+            bottom: -5px; /* Move it slightly outside the bottom */
             border: 3px solid black; /* Black outline */
             box-sizing: border-box;
             animation: snakeMovement 3s linear infinite; /* Snake animation */
-            z-index: 0; /* Behind the image */
+            z-index: -1; /* Behind the image */
+            border-radius: 10px; /* Rounded corners */
         }
 
         @keyframes snakeMovement {
@@ -105,7 +120,7 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
 
         .close {
@@ -117,25 +132,8 @@
             cursor: pointer;
         }
     </style>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-  
 </head>
 
-    
-    
 <body>
     <!-- Page Preloder -->
     <div id="preloder">
@@ -176,7 +174,6 @@
                                     <li><a href="Product-details.html">Product Details</a></li>
                                     <li><a href="about.html">About</a></li>
                                     <li><a href="services.html">Services</a></li>
-    
                                 </ul>
                             </li>
                             <li><a href="blog.html">Blog</a></li>
@@ -194,19 +191,21 @@
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
     </header>
-  <section id="imageGallery">
-    <h2>Image Gallery</h2>
-    <div class="gallery" id="gallery">
-        <!-- Images will be injected here -->
+    <!-- Header Section End -->
+
+    <section id="imageGallery">
+        <h1 class="text-center mb-5" style="font-size: 20px;">Beds Gallery</h1>
+        <div class="gallery" id="gallery">
+            <!-- Images will be injected here -->
+        </div>
+    </section>
+
+    <div class="overlay" id="imageOverlay" onclick="closeOverlay()">
+        <span class="close" onclick="closeOverlay(event)">&times;</span>
+        <img id="overlayImage" src="" alt="Enlarged Image" onclick="closeOverlay(event)">
     </div>
-</section>
 
-<div class="overlay" id="imageOverlay" onclick="closeOverlay()">
-    <span class="close" onclick="closeOverlay(event)">&times;</span>
-    <img id="overlayImage" src="" alt="Enlarged Image" onclick="closeOverlay(event)">
-</div>
-
-
+    <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
         <div class="container">
             <div class="footer__top">
@@ -227,31 +226,27 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="col-lg-3 col-md-6">
                     <div class="footer__about">
                         <div class="footer__logo">
                             <a href="#"><img src="img/logo.png" alt=""></a>
                         </div>
-                        <p> Main F/2 Road , Mirpur Azad Kashmir <br />Pakistan</p>
+                        <p>Main F/2 Road, Mirpur Azad Kashmir <br />Pakistan</p>
                         <ul>
                             <li>hr.abbasraza@gmail.com</li>
                             <li>+92 341 8942148</li>
                         </ul>
                         <div class="footer__social">
                             <a href="https://wa.me/923418942148" target="_blank">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 60px; height: 60px;">
-</a>
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" style="width: 60px; height: 60px;">
+                            </a>
                             <a href="https://www.facebook.com/share/1FipiYLaNQ/"><i class="fa fa-facebook"></i></a>
-                          
-                           <a href="https://www.instagram.com/metro_furniture_mirpur/" target="_blank">
-    <i class="fa fa-instagram"></i>
-</a><a href="https://www.tiktok.com/@metro_furniture_mirpur?_r=1&_t=ZS-928BcgYxznk" target="_blank" class="social-link">
-            <i class="fab fa-tiktok"></i> 
-        </a>
+                            <a href="https://www.instagram.com/metro_furniture_mirpur/" target="_blank"><i class="fa fa-instagram"></i></a>
+                            <a href="https://www.tiktok.com/@metro_furniture_mirpur?_r=1&_t=ZS-928BcgYxznk" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
+                <div class="col-lg-2 offset-lg-1 col-md-3">
                     <div class="footer__widget">
                         <h6>Company</h6>
                         <ul>
@@ -263,7 +258,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-6">
+                <div class="col-lg-2 col-md-3">
                     <div class="footer__widget">
                         <h6>Services</h6>
                         <ul>
@@ -274,11 +269,11 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="footer__address">
                         <h6>Get In Touch</h6>
-                         <p>CEO : Abbas Raza</p>
-                        <p>Location: Main F/2 Road , Mirpur Azad Kashmir <br />Pakistan</p>
+                        <p>CEO: Abbas Raza</p>
+                        <p>Location: Main F/2 Road, Mirpur Azad Kashmir <br />Pakistan</p>
                         <ul>
                             <li>hr.abbasraza@gmail.com</li>
                             <li>+92 341 8942148</li>
@@ -292,125 +287,112 @@
                         <div class="copyright__text">
                             <p>Copyright © <script>
                                 document.write(new Date().getFullYear());
-                            </script> All rights reserved <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com"
-                            target="_blank">Metro Furniture</a>
-                        </p>
+                            </script> All rights reserved <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Metro Furniture</a>
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-5">
-                    <div class="copyright__widget">
-                        <a href="#">Terms of use</a>
-                        <a href="#">Privacy Policy</a>
+                    <div class="col-lg-4 col-md-5">
+                        <div class="copyright__widget">
+                            <a href="#">Terms of use</a>
+                            <a href="#">Privacy Policy</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-<script>
-    const images = [
-        "img/project/bd1.jpg",
-        "img/project/bd2.jpg",
-        "img/project/bd3.jpg",
-        "img/project/bd4.jpg",
-        "img/project/bd5.jpg",
-        "img/project/bd6.jpg",
-        "img/project/bd7.jpg",
-        "img/project/bd8.jpg",
-        "img/project/bd9.jpg",
-        "img/project/bd10.jpg",
-        "img/project/bd11.jpg",
-        "img/project/bd12.jpg",
-        "img/project/bd13.jpg",
-        "img/project/bd14.jpg",
-        "img/project/bd15.jpg",
-        "img/project/bd16.jpg",
-        "img/project/bd17.jpg",
-        "img/project/bd18.jpg",
-        "img/project/bd19.jpg",
-        "img/project/bd20.jpg",
-        "img/project/bd21.jpg",
-        "img/project/bd22.jpg",
-        "img/project/bd23.jpg",
-        "img/project/bd24.jpg",
-        "img/project/bd25.jpg",
-        "img/project/bd26.jpg",
-        "img/project/bd27.jpg",
-        "img/project/bd28.jpg",
-        "img/project/bd29.jpg",
-        "img/project/bd30.jpg",
-        "img/project/bd31.jpg",
-        "img/project/bd32.jpg",
-        "img/project/bd33.jpg",
-        "img/project/bd34.jpg",
-        "img/project/bd35.jpg",
-        "img/project/bd36.jpg",
-        "img/project/bd37.jpg",
-        "img/project/bd38.jpg",
-        "img/project/bd39.jpg",
-        "img/project/bd40.jpg"
-    ];
+    </footer>
+    <!-- Footer Section End -->
 
-    const gallery = document.getElementById('gallery');
+    <script>
+        const images = [
+            "img/project/bd1.jpg",
+            "img/project/bd2.jpg",
+            "img/project/bd3.jpg",
+            "img/project/bd4.jpg",
+            "img/project/bd5.jpg",
+            "img/project/bd6.jpg",
+            "img/project/bd7.jpg",
+            "img/project/bd8.jpg",
+            "img/project/bd9.jpg",
+            "img/project/bd10.jpg",
+            "img/project/bd11.jpg",
+            "img/project/bd12.jpg",
+            "img/project/bd13.jpg",
+            "img/project/bd14.jpg",
+            "img/project/bd15.jpg",
+            "img/project/bd16.jpg",
+            "img/project/bd17.jpg",
+            "img/project/bd18.jpg",
+            "img/project/bd19.jpg",
+            "img/project/bd20.jpg",
+            "img/project/bd21.jpg",
+            "img/project/bd22.jpg",
+            "img/project/bd23.jpg",
+            "img/project/bd24.jpg",
+            "img/project/bd25.jpg",
+            "img/project/bd26.jpg",
+            "img/project/bd27.jpg",
+            "img/project/bd28.jpg",
+            "img/project/bd29.jpg",
+            "img/project/bd30.jpg",
+            "img/project/bd31.jpg",
+            "img/project/bd32.jpg",
+            "img/project/bd33.jpg",
+            "img/project/bd34.jpg",
+            "img/project/bd35.jpg",
+            "img/project/bd36.jpg",
+            "img/project/bd37.jpg",
+            "img/project/bd38.jpg",
+            "img/project/bd39.jpg",
+            "img/project/bd40.jpg"
+        ];
 
-    images.forEach(src => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
+        const gallery = document.getElementById('gallery');
 
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
+        images.forEach(src => {
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
 
-        // Create the splash effect div
-        const splashEffect = document.createElement('div');
-        splashEffect.className = 'splash-effect';
+            // Create the splash effect div
+            const splashEffect = document.createElement('div');
+            splashEffect.className = 'splash-effect';
 
-        // Handle image click to open overlay
-        img.onclick = () => openOverlay(src);
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
 
-        galleryItem.appendChild(img);
-        galleryItem.appendChild(splashEffect);
-        gallery.appendChild(galleryItem);
-    });
+            // Handle image click to open overlay
+            img.onclick = () => openOverlay(src);
 
-    function openOverlay(src) {
-        document.getElementById("overlayImage").src = src;
-        document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
-    }
+            // Append both splash and image to the galleryItem
+            galleryItem.appendChild(splashEffect);
+            galleryItem.appendChild(img);
+            gallery.appendChild(galleryItem);
+        });
 
-    function closeOverlay(event) {
-        // Prevent the overlay from closing when the close button is clicked
-        if (event && event.target.classList.contains('close')) {
-            document.getElementById("imageOverlay").style.display = "none"; // Close overlay
-            return;
+        function openOverlay(src) {
+            document.getElementById("overlayImage").src = src;
+            document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
         }
-        // Close overlay if clicked outside the image
-        document.getElementById("imageOverlay").style.display = "none"; // Close overlay
-    }
-</script>
+
+        function closeOverlay(event) {
+            // Prevent the overlay from closing when the close button is clicked
+            if (event && event.target.classList.contains('close')) {
+                document.getElementById("imageOverlay").style.display = "none"; // Close overlay
+                return;
+            }
+            // Close overlay if clicked outside the image
+            document.getElementById("imageOverlay").style.display = "none"; // Close overlay
+        }
+    </script>
     
-<!-- Footer Section End -->
-    
-<!-- Js Plugins -->
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.slicknav.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/slick.min.js"></script>
-<script src="js/main.js"></script>
+    <!-- Js Plugins -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-

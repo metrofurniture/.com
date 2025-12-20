@@ -48,89 +48,94 @@
         .gallery-item {
             position: relative; /* Ensure this is set for the splash effect */
             margin: 10px;
+              flex: 0 0 calc(50% - 10px); 
+        }
+
+         .gallery img {
+        width: 100%; /* Responsive width */
+        height: auto; /* Maintain aspect ratio */
+        border: 5px solid white; /* White outline */
+        border-radius: 0; /* Square corners */
+        cursor: pointer;
+        transition: transform 0.2s; /* Smooth scaling effect */
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05); /* Slight hover scaling */
+    }
+
+    /* Continuous moving black splash effect */
+    .splash-effect {
+        position: absolute;
+        top: -5px; /* Move slightly outside the top */
+        left: -5px; /* Move slightly outside the left */
+        right: -5px; /* Move slightly outside the right */
+        bottom: -5px; /* Move slightly outside the bottom */
+        border: 3px solid black; /* Black outline */
+        box-sizing: border-box;
+        animation: snakeMovement 3s linear infinite; /* Snake animation */
+        z-index: -1; /* Behind the image */
+        border-radius: 10px; /* Rounded corners */
+    }
+
+    @keyframes snakeMovement {
+        0% {
+            clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+        }
+        25% {
+            clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 10%);
+        }
+        50% {
+            clip-path: polygon(10% 0%, 0% 0%, 100% 100%, 100% 10%);
+        }
+        75% {
+            clip-path: polygon(0% 10%, 0% 100%, 100% 0%, 100% 10%);
+        }
+        100% {
+            clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .gallery-item {
+            flex: 0 0 calc(50% - 10px); /* Two images per row on mobile */
         }
 
         .gallery img {
-            width: 900px; /* Adjust image size */
-            height: 900px; /* Adjust image size */
-            border: 5px solid white; /* White outline */
-            border-radius: 0; /* Square corners */
-            cursor: pointer;
-            transition: transform 0.2s; /* Smooth scaling effect */
+            width: 100%; /* Full width of the parent */
+            height: auto; /* Maintain aspect ratio */
         }
+    }
 
-        .gallery img:hover {
-            transform: scale(1.05); /* Slight hover scaling */
-        }
+    /* Styles for the overlay */
+    .overlay {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
 
-        /* Continuous moving black splash effect */
-        .splash-effect {
-            position: absolute;
-            top: -5px; /* Move it slightly outside the top */
-            left: -5px; /* Move it slightly outside the left */
-            right: -5px; /* Move it slightly outside the right */
-            bottom: -5px; /* Move it slightly outside the bottom */
-            border: 3px solid black; /* Black outline */
-            box-sizing: border-box;
-            animation: snakeMovement 3s linear infinite; /* Snake animation */
-            z-index: -1; /* Behind the image */
-            border-radius: 10px; /* Rounded corners */
-        }
+    .overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
 
-        @keyframes snakeMovement {
-            0% {
-                clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
-            }
-            25% {
-                clip-path: polygon(10% 0%, 0% 100%, 100% 100%, 100% 10%);
-            }
-            50% {
-                clip-path: polygon(10% 0%, 0% 0%, 100% 100%, 100% 10%);
-            }
-            75% {
-                clip-path: polygon(0% 10%, 0% 100%, 100% 0%, 100% 10%);
-            }
-            100% {
-                clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%);
-            }
-        }
-
-        @media (max-width: 600px) {
-            .gallery img {
-                width: 200px; /* Smaller images on mobile */
-                height: 200px; /* Maintain aspect ratio */
-            }
-        }
-
-        /* Styles for the overlay */
-        .overlay {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .overlay img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
+    .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 30px;
+        cursor: pointer;
+    }
     </style>
 </head>
 
@@ -396,6 +401,7 @@
 </body>
 
 </html>
+
 
 
 

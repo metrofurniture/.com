@@ -26,8 +26,7 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 
-    <style>
-
+  <style>
     body {
         font-family: Arial, sans-serif;
         background-color: #f9f9f9;
@@ -48,14 +47,15 @@
 
     .gallery-item {
         position: relative; /* Necessary for the splash effect */
-        margin: 5px;  /* Small margin for spacing */
-        flex: 1 1 calc(50% - 10px); /* Two items per row with gap */
+        margin: 5px; /* Small margin for spacing */
+        flex: 0 0 calc(50% - 10px); /* Two items per row, adjust margin */
         box-sizing: border-box; /* Ensure padding and border are included */
     }
 
     .gallery img {
         width: 100%; /* Full width of the parent */
-        height: auto; /* Maintain aspect ratio */
+        height: 300px; /* Fixed height for uniformity */
+        object-fit: cover; /* Ensures the image covers the box proportionally */
         border: 5px solid white; /* White outline */
         border-radius: 0; /* Square corners */
         cursor: pointer;
@@ -101,24 +101,22 @@
     /* Styles for mobile */
     @media (max-width: 600px) {
         .gallery-item {
-            flex: 1 1 calc(50% - 10px); /* Ensure two images per row */
+            flex: 0 0 calc(50% - 10px); /* Two images per row */
         }
 
         .gallery img {
-            width: 100%; /* Full width of the parent */
-            height: auto; /* Maintain aspect ratio */
+            height: 200px; /* Fixed height on mobile for consistency */
         }
     }
 
-    /* Additional styles for larger mobile screens */
+    /* Styles for larger mobile screens */
     @media (min-width: 601px) and (max-width: 900px) {
         .gallery-item {
-            flex: 1 1 calc(50% - 10px); /* Two images per row */
+            flex: 0 0 calc(50% - 10px); /* Two images per row */
         }
 
         .gallery img {
-            width: 100%;
-            height: auto;
+            height: 300px; /* Fixed height */
         }
     }
 
@@ -151,8 +149,7 @@
         font-size: 30px;
         cursor: pointer;
     }
-
-    </style>
+</style>
 </head>
 
 <body>
@@ -417,6 +414,7 @@
 </body>
 
 </html>
+
 
 
 

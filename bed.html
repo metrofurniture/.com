@@ -298,17 +298,19 @@
 <body>
  
  
+ 
+ 
     <section id="imageGallery">
    <h1 class="text-center mb-5" style="font-size: 20px;">Beds Gallery</h1>
     <div class="gallery" id="gallery">
         <!-- Images will be injected here -->
     </div>
-        <div class="overlay" id="imageOverlay" onclick="closeOverlay()">
-    <span class="close" onclick="closeOverlay()">&times;</span>
-    <img id="overlayImage" src="" alt="Enlarged Image" onclick="closeOverlay()">
-</div>
 </section>
-    
+
+<div class="overlay" id="imageOverlay" onclick="closeOverlay()">
+    <span class="close" onclick="closeOverlay(event)">&times;</span>
+    <img id="overlayImage" src="" alt="Enlarged Image" onclick="closeOverlay(event)">
+</div>
     
    <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
@@ -412,7 +414,7 @@
         </div>
     </div>
 </footer>
- <script>
+<script>
     const images = [
         "img/project/bd1.jpg",
         "img/project/bd2.jpg",
@@ -459,11 +461,23 @@
     const gallery = document.getElementById('gallery');
 
     images.forEach(src => {
+        const galleryItem = document.createElement('div');
+        galleryItem.className = 'gallery-item';
+
         const img = document.createElement('img');
         img.src = src;
         img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
+
+        // Create the splash effect div
+        const splashEffect = document.createElement('div');
+        splashEffect.className = 'splash-effect';
+
+        // Handle image click to open overlay
         img.onclick = () => openOverlay(src);
-        gallery.appendChild(img);
+
+        galleryItem.appendChild(img);
+        galleryItem.appendChild(splashEffect);
+        gallery.appendChild(galleryItem);
     });
 
     function openOverlay(src) {
@@ -471,7 +485,13 @@
         document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
     }
 
-    function closeOverlay() {
+    function closeOverlay(event) {
+        // Prevent the overlay from closing when the close button is clicked
+        if (event && event.target.classList.contains('close')) {
+            document.getElementById("imageOverlay").style.display = "none"; // Close overlay
+            return;
+        }
+        // Close overlay if clicked outside the image
         document.getElementById("imageOverlay").style.display = "none"; // Close overlay
     }
 </script>
@@ -488,6 +508,7 @@
 </body>
 
 </html>
+
 
 
 

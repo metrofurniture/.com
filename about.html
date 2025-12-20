@@ -22,6 +22,106 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f8f8f8;
+  color:#333;
+}
+h2 {
+  text-align:center;
+  padding:15px;
+  font-size:22px;
+  font-weight:bold;
+}
+/* FAQ cards */
+#faq-widget {
+  max-width:900px;
+  margin:auto;
+  padding:10px;
+  position:relative;
+}
+#faq-carousel {
+  display:flex;
+  overflow-x:auto;
+  gap:12px;
+  padding:0 45px;
+  scroll-behavior:smooth;
+}
+.card {
+  min-width:250px;
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);
+  cursor:pointer;
+  flex-shrink:0;
+  overflow:hidden;
+}
+.card img {
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-top-left-radius:8px;
+  border-top-right-radius:8px;
+}
+.card .title {
+  padding:10px;
+  font-size:15px;
+  font-weight:bold;
+  line-height:1.3;
+  text-align:center;
+}
+/* Scroll buttons */
+.scrollBtn {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  background:#fff;
+  border:none;
+  padding:8px;
+  border-radius:4px;
+  cursor:pointer;
+  z-index:5;
+  font-size:18px;
+}
+#faq-prev { left:0; }
+#faq-next { right:0; }
+/* Overlay */
+#faq-overlay {
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+  padding:15px;
+}
+#faq-overlay .frame {
+  background:#fff;
+  border-radius:8px;
+  width:95%;
+  max-width:700px;
+  height:85%;
+  overflow:auto;
+  position:relative;
+  padding:20px;
+  font-size:14px;
+  line-height:1.6;
+}
+#faq-overlay .close {
+  position:absolute;
+  top:10px;
+  right:15px;
+  font-size:22px;
+  cursor:pointer;
+  font-weight:bold;
+  color:#333;
+}
+</style>
 </head>
 
 <body>
@@ -172,7 +272,19 @@
         </div>
     </section>
     <!-- Call To Action Section End -->
+<h2> Providing Expert Solutions</h2>
+<div id="faq-widget">
+  <button class="scrollBtn" id="faq-prev">◀</button>
+  <div id="faq-carousel"></div>
+  <button class="scrollBtn" id="faq-next">▶</button>
+</div>
 
+<div id="faq-overlay">
+  <div class="frame">
+    <div class="close" onclick="document.getElementById('faq-overlay').style.display='none';">✕</div>
+    <div id="faq-content"></div>
+  </div>
+</div>
     <!-- Team Section Begin -->
     <section class="team spad">
         <div class="container">
@@ -334,6 +446,87 @@
     </div>
 </footer>
 <!-- Footer Section End -->
+<script>
+const faqItems = [
+  {
+    title: "How to choose the perfect sofa for your living room?",
+    img: "https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Choosing the Perfect Sofa</h3>
+      <p>Selecting a sofa is not just about comfort; it's about fitting the scale and style of your living space. At <strong>Mtero Furniture</strong>, we guide clients in picking sofas that optimize room space while enhancing aesthetics. We offer modular and sectional sofas that can be customized to room dimensions. Fabric selection is crucial — we provide stain-resistant and premium fabrics in multiple colors to match your interior theme. Additionally, we recommend accessories such as throw pillows and rugs that complement the sofa. Whether you need a cozy loveseat for a compact apartment or a spacious sectional for a family room, Mtero Furniture ensures your sofa is both functional and stylish.</p>`
+  },
+  {
+    title: "How can I maximize storage in my bedroom?",
+    img: "https://images.pexels.com/photos/1643381/pexels-photo-1643381.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Maximizing Bedroom Storage</h3>
+      <p>Bedrooms often suffer from clutter, but smart furniture solutions can transform the space. <strong>Mtero Furniture</strong> specializes in multi-functional beds with under-bed drawers, loft beds, and wardrobes with adjustable compartments. Our team designs storage solutions that seamlessly integrate into your room without compromising aesthetics. From hidden compartments to floating shelves, we provide a combination of practicality and elegance. By selecting the right bed and storage units, you can create a serene and organized bedroom environment.</p>`
+  },
+  {
+    title: "How to choose a bed for ultimate comfort?",
+    img: "https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Choosing a Comfortable Bed</h3>
+      <p>Your bed affects your sleep quality and overall well-being. At <strong>Mtero Furniture</strong>, we evaluate clients' preferences for firmness, mattress type, and bed frame design. We offer orthopedic mattresses and memory foam options, coupled with sturdy frames that complement your bedroom style. Adjustable beds are also available for added comfort. Each bed is tested for durability and ergonomics, ensuring that you wake up refreshed. Additionally, we provide custom headboard designs that enhance aesthetics and offer added functionality such as built-in storage or lighting.</p>`
+  },
+  {
+    title: "How to redesign a small living room?",
+    img: "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Redesigning a Small Living Room</h3>
+      <p>Small living rooms require strategic planning to maximize space and style. <strong>Mtero Furniture</strong> provides design consultation to select modular furniture, light-toned sofas, and minimalistic coffee tables. We also suggest vertical storage solutions and multi-purpose furniture to reduce clutter. Mirrors and lighting play a role in creating the illusion of more space. With our expertise, even compact rooms can look spacious, inviting, and functional without sacrificing comfort or aesthetics.</p>`
+  },
+  {
+    title: "What are the best living room layout ideas?",
+    img: "https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Best Living Room Layouts</h3>
+      <p>A functional layout balances flow, comfort, and visual appeal. <strong>Mtero Furniture</strong> offers L-shaped, U-shaped, and open-concept arrangements tailored to your room size and lifestyle. We recommend focal points such as entertainment units or fireplaces and align furniture to enhance conversation and accessibility. Accessories like rugs and artwork complete the design. Each layout is customized to optimize seating, traffic flow, and harmony in the living space.</p>`
+  },
+  {
+    title: "How can I choose the perfect coffee table?",
+    img: "https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Choosing the Perfect Coffee Table</h3>
+      <p>Coffee tables should blend functionality with style. At <strong>Mtero Furniture</strong>, we offer tables with storage drawers, lift-top functionality, and modular designs. Material selection is crucial; wood, glass, and metal options are available. We guide clients in matching the table with their sofa and room layout to maintain balance and proportion. A well-chosen coffee table serves as both a centerpiece and practical surface for everyday use.</p>`
+  },
+  {
+    title: "How to select a TV unit for my living room?",
+    img: "https://images.pexels.com/photos/112811/pexels-photo-112811.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Selecting a TV Unit</h3>
+      <p>TV units combine storage, organization, and aesthetics. <strong>Mtero Furniture</strong> custom-designs units that accommodate entertainment systems, books, and decor items. Cable management, adjustable shelves, and modular configurations ensure both functionality and visual harmony. Whether you prefer floating units, minimalist designs, or ornate cabinetry, we provide solutions tailored to your living room style and needs.</p>`
+  },
+  {
+    title: "How to maintain sofas and upholstery?",
+    img: "https://images.pexels.com/photos/1643381/pexels-photo-1643381.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Maintaining Sofas & Upholstery</h3>
+      <p>Proper maintenance prolongs the life of your sofa. <strong>Mtero Furniture</strong> offers cleaning, conditioning, and repair services. We advise on fabric protection, stain removal, and fluffing cushions. For leather sofas, we provide specialized treatments to maintain suppleness and prevent cracks. Regular upkeep ensures your living room remains stylish and comfortable for years.</p>`
+  },
+  {
+    title: "How to mix modern and classic furniture styles?",
+    img: "https://images.pexels.com/photos/279719/pexels-photo-279719.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Mixing Modern & Classic Styles</h3>
+      <p>Blending furniture styles adds personality to your living space. <strong>Mtero Furniture</strong> helps select statement pieces that harmonize modern lines with traditional elements. By balancing colors, textures, and proportions, we create a cohesive look that feels curated and inviting. Our design experts also provide custom furniture options to seamlessly integrate different styles.</p>`
+  },
+  {
+    title: "How can I redesign my bedroom for luxury and comfort?",
+    img: "https://images.pexels.com/photos/271618/pexels-photo-271618.jpeg?auto=compress&cs=tinysrgb&w=800",
+    content: `<h3>Redesigning a Bedroom for Luxury & Comfort</h3>
+      <p>Creating a luxurious and comfortable bedroom involves furniture, lighting, and layout. <strong>Mtero Furniture</strong> offers custom beds, bedside tables, wardrobes, and seating options that enhance comfort while maintaining elegance. We also provide consultation for mattress types, bedding, and decorative accessories. Our goal is to transform your bedroom into a serene, functional, and visually appealing sanctuary.</p>`
+  }
+];
+
+// Add FAQ cards
+const carousel = document.getElementById("faq-carousel");
+faqItems.forEach(item => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `<img src="${item.img}" alt="${item.title}"><div class="title">${item.title}</div>`;
+  card.onclick = () => {
+    document.getElementById("faq-content").innerHTML = item.content;
+    document.getElementById("faq-overlay").style.display='flex';
+  };
+  carousel.appendChild(card);
+});
+
+// Scroll buttons
+document.getElementById("faq-prev").onclick = () => carousel.scrollBy({left:-260,behavior:'smooth'});
+document.getElementById("faq-next").onclick = () => carousel.scrollBy({left:260,behavior:'smooth'});
+</script>
 
 <!-- Js Plugins -->
 <script src="js/jquery-3.3.1.min.js"></script>

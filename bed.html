@@ -366,6 +366,12 @@
             "img/project/bd40.jpg"
         ];
 
+        images.forEach(src => {
+  const img = new Image();
+  img.src = src;
+  img.loading = "lazy";   // 👈 ONE LINE
+  document.body.appendChild(img);
+});
         const gallery = document.getElementById('gallery');
 
         images.forEach(src => {
@@ -415,6 +421,7 @@
 </body>
 
 </html>
+
 
 
 

@@ -181,7 +181,62 @@
             </div>
         </div>
     </div>
+    
     <!-- Breadcrumb Section End -->
+    <div style="
+max-width:420px;
+margin:auto;
+height:100vh;
+display:flex;
+flex-direction:column;
+margin:0;
+background:#0f0f0f;
+font-family:Arial,Helvetica,sans-serif;
+color:#fff;
+">
+
+<!-- HEADER -->
+<div style="
+background:#000;
+padding:12px;
+text-align:center;
+border-bottom:1px solid #333;
+">
+  <div style="font-size:16px;font-weight:bold;">🤖 Metro Agent</div>
+  <div style="font-size:12px;color:#aaa;">
+    Furniture Store • Mirpur AJK
+  </div>
+</div>
+
+<!-- CHAT AREA -->
+<div id="chat" style="
+flex:1;
+overflow-y:auto;
+padding:10px;
+background:#1a1a1a;
+"></div>
+
+<!-- SUGGESTIONS -->
+<div id="suggestions" style="
+padding:8px;
+background:#111;
+border-top:1px solid #333;
+"></div>
+
+<!-- INPUT -->
+<input id="input" type="text"
+placeholder="Ask about beds, sofas, dining tables…"
+style="
+padding:14px;
+font-size:14px;
+border:none;
+outline:none;
+background:#000;
+color:#fff;
+border-top:1px solid #333;
+"/>
+
+</div>
 
    <section class="project-page spad">
         <div class="container">
@@ -604,7 +659,119 @@
     </div>
 </footer>
 <!-- Footer Section End -->
+<script>
+const chat = document.getElementById("chat");
+const input = document.getElementById("input");
+const suggestions = document.getElementById("suggestions");
 
+const contactText =
+"😊 For exact pricing, custom orders, or detailed guidance, please contact:\n\n📞 Abbas Raza: 0341-8942148\n📍 Main F2 Road, Mirpur Azad Kashmir\n\nHe will guide you properly and help you buy the best furniture 🛒";
+
+const qa = [
+{q:"What furniture do you sell?",a:"We sell Beds, Sofas, Dining Tables, Cupboards, Consoles, and Center Tables."},
+{q:"Do you make custom furniture?",a:"Yes 😄 We customize furniture exactly as per your size, color, and design needs."},
+{q:"Where is your shop located?",a:"📍 We are located at Main F2 Road, Mirpur Azad Kashmir."},
+{q:"Which sofa is best for small rooms?",a:"Compact 2-seater or L-shape sofas are perfect for small rooms."},
+{q:"Do you sell L shape sofas?",a:"Yes 👍 We offer modern and customized L-shape sofas."},
+{q:"Which sofa is best for families?",a:"3-seater or L-shape sofas with strong fabric work best."},
+{q:"Can I customize sofa fabric and color?",a:"Yes 😄 Fabric, color, size — everything can be customized."},
+{q:"Which bed is best for comfort?",a:"Solid wood beds with a good mattress give best comfort."},
+{q:"Do you have king size beds?",a:"Yes 👍 King, queen, and custom size beds are available."},
+{q:"Do you make storage beds?",a:"Yes 😄 Storage beds are available and very popular."},
+{q:"Which dining table is best for small homes?",a:"4-seater or round dining tables are ideal."},
+{q:"Do you sell 6 seater dining tables?",a:"Yes 👍 6-seater and custom dining tables are available."},
+{q:"Which material is best for dining tables?",a:"Solid wood is durable and long-lasting."},
+{q:"Do dining tables come with chairs?",a:"Yes 😄 Chairs can be included or customized."},
+{q:"Do you sell cupboards?",a:"Yes 👍 We sell spacious and stylish cupboards."},
+{q:"Can cupboards be customized?",a:"Yes 😄 Size, shelves, and design can be customized."},
+{q:"Do you have wardrobes?",a:"Yes 👍 Wardrobes and cupboards both are available."},
+{q:"What is a console table?",a:"Console tables are used in entrances and for decoration."},
+{q:"Do you sell console tables?",a:"Yes 😄 Modern and classic console tables are available."},
+{q:"What is a center table?",a:"Center tables complete the living room look."},
+{q:"Do you sell center tables?",a:"Yes 👍 Modern and stylish center tables available."},
+{q:"Is your furniture durable?",a:"Yes 😄 We focus on strong, long-lasting quality."},
+{q:"Do you offer modern designs?",a:"Yes 👍 Modern, classic, and luxury designs available."},
+{q:"Is custom furniture expensive?",a:"Pricing depends on design. Please contact Abbas Raza."},
+{q:"What is the price of sofas?",a:"Prices vary. Contact Abbas Raza for best rates."},
+{q:"What is the price of beds?",a:"Exact prices are shared by Abbas Raza."},
+{q:"What is the price of dining tables?",a:"Please contact Abbas Raza for pricing details."},
+{q:"Do you help choose furniture?",a:"Yes 😄 We guide you to select the best furniture."},
+{q:"Is your furniture good for apartments?",a:"Yes 👍 Compact and space-saving designs available."},
+{q:"Which sofa color is best?",a:"Grey, beige, and neutral colors are timeless."},
+{q:"How long does your furniture last?",a:"With proper care, it lasts many years 👍"},
+{q:"Can I visit your shop?",a:"Yes 😄 Visit us at Main F2 Road, Mirpur AJK."},
+{q:"Why should I buy from you?",a:"Quality, customization, trust, and local expertise 🤝"},
+{q:"Do you guide room layout?",a:"Yes 👍 We help with furniture placement."},
+{q:"Can I place custom order?",a:"Yes 😄 Custom orders are always welcome."},
+{q:"Do you deliver furniture?",a:"Please contact Abbas Raza for delivery details."},
+{q:"What wood do you use?",a:"We use quality wood suitable for long life."},
+{q:"How can I place an order?",a:"Contact Abbas Raza and he will guide you smoothly 😊"}
+];
+
+function addMessage(text, bot=true){
+  const div = document.createElement("div");
+  div.style.margin="8px 0";
+  div.style.padding="10px";
+  div.style.borderRadius="8px";
+  div.style.maxWidth="92%";
+  div.style.fontSize="14px";
+  div.style.background = bot ? "#333" : "#555";
+  div.style.alignSelf = bot ? "flex-start" : "flex-end";
+  div.innerText = text;
+  chat.appendChild(div);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function typeEffect(text){
+  let i=0, msg="";
+  addMessage("",true);
+  const timer=setInterval(()=>{
+    msg+=text.charAt(i);
+    chat.lastChild.innerText=msg;
+    i++;
+    if(i>=text.length) clearInterval(timer);
+  },22);
+}
+
+input.addEventListener("input",()=>{
+  suggestions.innerHTML="";
+  const val=input.value.toLowerCase();
+  if(!val) return;
+  qa.filter(x=>x.q.toLowerCase().includes(val)).slice(0,5).forEach(item=>{
+    const s=document.createElement("div");
+    s.innerText=item.q;
+    s.style.padding="8px";
+    s.style.margin="4px 0";
+    s.style.background="#222";
+    s.style.border="1px solid #444";
+    s.style.borderRadius="6px";
+    s.style.fontSize="13px";
+    s.onclick=()=>{
+      addMessage(item.q,false);
+      suggestions.innerHTML="";
+      typeEffect(item.a+"\n\n🛒 We’d love to serve you!");
+      input.value="";
+    };
+    suggestions.appendChild(s);
+  });
+});
+
+input.addEventListener("keydown",e=>{
+  if(e.key==="Enter" && input.value.trim()){
+    addMessage(input.value,false);
+    suggestions.innerHTML="";
+    typeEffect(contactText);
+    input.value="";
+  }
+});
+
+/* AUTO START TYPING ON LOAD (MOBILE FRIENDLY) */
+window.onload = ()=>{
+  typeEffect(
+"Hello 😄 I’m Metro Agent !\n\nWe are providing expert furniture services for living (Beds, Sofas, Dining Tables, Cupboards, Consoles & Center Tables) "Metro Furniture has been trusted by customers since 2015, delivering top-notch furniture solutions that blend style, comfort, and durability. With years of experience, we take pride in offering the best of furniture, tailored to your unique needs and tastes. From sleek modern designs to timeless classics, our collection is crafted with quality and care, ensuring you find the perfect fit for your home or office. Experience the Metro Furniture difference – where excellence meets elegance.".\n✨ Custom furniture available\n📍 Main F2 Road, Mirpur Azad Kashmir\n\nAsk me anything — I’m here to help!"
+  );
+};
+</script>
 <!-- Js Plugins -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

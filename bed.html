@@ -27,32 +27,34 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-        }
 
-        #imageGallery {
-            text-align: center;
-            margin: 30px 0;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+    }
 
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            max-width: 3200px; /* Set max width for the gallery */
-            margin: 0 auto;
-        }
+    #imageGallery {
+        text-align: center;
+        margin: 30px 0;
+    }
 
-        .gallery-item {
-            position: relative; /* Ensure this is set for the splash effect */
-            margin: 10px;
-              flex: 0 0 calc(50% - 10px); 
-        }
+    .gallery {
+        display: flex;
+        flex-wrap: wrap; /* Allow wrapping of items */
+        justify-content: center; /* Center images */
+        max-width: 3200px; /* Set max width for the gallery */
+        margin: 0 auto;
+    }
 
-         .gallery img {
-        width: 100%; /* Responsive width */
+    .gallery-item {
+        position: relative; /* Necessary for the splash effect */
+        margin: 5px;  /* Small margin for spacing */
+        flex: 1 1 calc(50% - 10px); /* Two items per row with gap */
+        box-sizing: border-box; /* Ensure padding and border are included */
+    }
+
+    .gallery img {
+        width: 100%; /* Full width of the parent */
         height: auto; /* Maintain aspect ratio */
         border: 5px solid white; /* White outline */
         border-radius: 0; /* Square corners */
@@ -96,14 +98,27 @@
         }
     }
 
+    /* Styles for mobile */
     @media (max-width: 600px) {
         .gallery-item {
-            flex: 0 0 calc(50% - 10px); /* Two images per row on mobile */
+            flex: 1 1 calc(50% - 10px); /* Ensure two images per row */
         }
 
         .gallery img {
             width: 100%; /* Full width of the parent */
             height: auto; /* Maintain aspect ratio */
+        }
+    }
+
+    /* Additional styles for larger mobile screens */
+    @media (min-width: 601px) and (max-width: 900px) {
+        .gallery-item {
+            flex: 1 1 calc(50% - 10px); /* Two images per row */
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
         }
     }
 
@@ -136,6 +151,7 @@
         font-size: 30px;
         cursor: pointer;
     }
+
     </style>
 </head>
 
@@ -401,6 +417,7 @@
 </body>
 
 </html>
+
 
 
 

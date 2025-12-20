@@ -106,111 +106,24 @@
     <!-- Header Section End -->
 
      <style>
-              body {
-            font-family: Arial, sans-serif;
-        }
-
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .gallery img {
-            margin: 15px;
-            width: calc(50% - 30px); /* Two images per row */
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        @media (max-width: 600px) {
-            .gallery img {
-                width: calc(100% - 30px); /* One image per row on small screens */
-            }
-        }
-
-        /* Styles for the overlay */
-        .overlay {
-            display: none; /* Hidden by default */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .overlay img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-        }
+      }
 
     </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="text-center mb-5" style="font-size: 20px;">Beds Gallery</h1>
-    <div class="gallery">
-    <img src="img/project/bd1.jpg" alt="Bed 1" onclick="openOverlay(this.src)">
-    <img src="img/project/bd2.jpg" alt="Bed 2" onclick="openOverlay(this.src)">
-    <img src="img/project/bd3.jpg" alt="Bed 3" onclick="openOverlay(this.src)">
-    <img src="img/project/bd4.jpg" alt="Bed 4" onclick="openOverlay(this.src)">
-    <img src="img/project/bd5.jpg" alt="Bed 5" onclick="openOverlay(this.src)">
-    <img src="img/project/bd6.jpg" alt="Bed 6" onclick="openOverlay(this.src)">
-    <img src="img/project/bd7.jpg" alt="Bed 7" onclick="openOverlay(this.src)">
-    <img src="img/project/bd8.jpg" alt="Bed 8" onclick="openOverlay(this.src)">
-    <img src="img/project/bd9.jpg" alt="Bed 9" onclick="openOverlay(this.src)">
-    <img src="img/project/bd10.jpg" alt="Bed 10" onclick="openOverlay(this.src)">
-    <img src="img/project/bd11.jpg" alt="Bed 11" onclick="openOverlay(this.src)">
-    <img src="img/project/bd12.jpg" alt="Bed 12"onclick="openOverlay(this.src)">
-    <img src="img/project/bd13.jpg" alt="Bed 13"onclick="openOverlay(this.src)">
-    <img src="img/project/bd14.jpg" alt="Bed 14" onclick="openOverlay(this.src)">
-    <img src="img/project/bd15.jpg" alt="Bed 15" onclick="openOverlay(this.src)">
-    <img src="img/project/bd16.jpg" alt="Bed 16" onclick="openOverlay(this.src)">
-    <img src="img/project/bd17.jpg" alt="Bed 17" onclick="openOverlay(this.src)">
-    <img src="img/project/bd18.jpg" alt="Bed 18" onclick="openOverlay(this.src)">
-    <img src="img/project/bd19.jpg" alt="Bed 19" onclick="openOverlay(this.src)">
-    <img src="img/project/bd20.jpg" alt="Bed 20" onclick="openOverlay(this.src)">
-    <img src="img/project/bd21.jpg" alt="Bed 21" onclick="openOverlay(this.src)">
-    <img src="img/project/bd22.jpg" alt="Bed 22" onclick="openOverlay(this.src)">
-    <img src="img/project/bd23.jpg" alt="Bed 23" onclick="openOverlay(this.src)">
-    <img src="img/project/bd24.jpg" alt="Bed 24" onclick="openOverlay(this.src)">
-    <img src="img/project/bd25.jpg" alt="Bed 25" onclick="openOverlay(this.src)">
-    <img src="img/project/bd26.jpg" alt="Bed 26" onclick="openOverlay(this.src)">
-    <img src="img/project/bd27.jpg" alt="Bed 27" onclick="openOverlay(this.src)">
-    <img src="img/project/bd28.jpg" alt="Bed 28" onclick="openOverlay(this.src)">
-    <img src="img/project/bd29.jpg" alt="Bed 29" onclick="openOverlay(this.src)">
-    <img src="img/project/bd30.jpg" alt="Bed 30" onclick="openOverlay(this.src)">
-    <img src="img/project/bd31.jpg" alt="Bed 31" onclick="openOverlay(this.src)">
-    <img src="img/project/bd32.jpg" alt="Bed 32" onclick="openOverlay(this.src)">
-    <img src="img/project/bd33.jpg" alt="Bed 33" onclick="openOverlay(this.src)">
-    <img src="img/project/bd34.jpg" alt="Bed 34" onclick="openOverlay(this.src)">
-    <img src="img/project/bd35.jpg" alt="Bed 35" onclick="openOverlay(this.src)">
-    <img src="img/project/bd36.jpg" alt="Bed 36" onclick="openOverlay(this.src)">
-    <img src="img/project/bd37.jpg" alt="Bed 37" onclick="openOverlay(this.src)">
-    <img src="img/project/bd38.jpg" alt="Bed 38" onclick="openOverlay(this.src)">
-    <img src="img/project/bd39.jpg" alt="Bed 39" onclick="openOverlay(this.src)">
-    <img src="img/project/bd40.jpg" alt="Bed 40" onclick="openOverlay(this.src)">
-</div>
+ 
+ 
+    <section id="imageGallery">
+   <h1 class="text-center mb-5" style="font-size: 20px;">Beds Gallery</h1>
+    <div class="gallery" id="gallery">
+        <!-- Images will be injected here -->
     </div>
-    <div class="overlay" id="imageOverlay">
+        <div class="overlay" id="imageOverlay" onclick="closeOverlay()">
     <span class="close" onclick="closeOverlay()">&times;</span>
-    <img id="overlayImage" src="" alt="Enlarged Image">
+    <img id="overlayImage" src="" alt="Enlarged Image" onclick="closeOverlay()">
 </div>
+</section>
+    
     
    <!-- Footer Section Begin -->
     <footer class="footer set-bg" data-setbg="img/footer-bg.jpg">
@@ -314,16 +227,70 @@
         </div>
     </div>
 </footer>
-    <script>
+ <script>
+    const images = [
+        "img/project/bd1.jpg",
+        "img/project/bd2.jpg",
+        "img/project/bd3.jpg",
+        "img/project/bd4.jpg",
+        "img/project/bd5.jpg",
+        "img/project/bd6.jpg",
+        "img/project/bd7.jpg",
+        "img/project/bd8.jpg",
+        "img/project/bd9.jpg",
+        "img/project/bd10.jpg",
+        "img/project/bd11.jpg",
+        "img/project/bd12.jpg",
+        "img/project/bd13.jpg",
+        "img/project/bd14.jpg",
+        "img/project/bd15.jpg",
+        "img/project/bd16.jpg",
+        "img/project/bd17.jpg",
+        "img/project/bd18.jpg",
+        "img/project/bd19.jpg",
+        "img/project/bd20.jpg",
+        "img/project/bd21.jpg",
+        "img/project/bd22.jpg",
+        "img/project/bd23.jpg",
+        "img/project/bd24.jpg",
+        "img/project/bd25.jpg",
+        "img/project/bd26.jpg",
+        "img/project/bd27.jpg",
+        "img/project/bd28.jpg",
+        "img/project/bd29.jpg",
+        "img/project/bd30.jpg",
+        "img/project/bd31.jpg",
+        "img/project/bd32.jpg",
+        "img/project/bd33.jpg",
+        "img/project/bd34.jpg",
+        "img/project/bd35.jpg",
+        "img/project/bd36.jpg",
+        "img/project/bd37.jpg",
+        "img/project/bd38.jpg",
+        "img/project/bd39.jpg",
+        "img/project/bd40.jpg"
+    ];
+
+    const gallery = document.getElementById('gallery');
+
+    images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
+        img.onclick = () => openOverlay(src);
+        gallery.appendChild(img);
+    });
+
     function openOverlay(src) {
         document.getElementById("overlayImage").src = src;
-        document.getElementById("imageOverlay").style.display = "flex";
+        document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
     }
 
     function closeOverlay() {
-        document.getElementById("imageOverlay").style.display = "none";
+        document.getElementById("imageOverlay").style.display = "none"; // Close overlay
     }
 </script>
+    
 <!-- Footer Section End -->
     
 <!-- Js Plugins -->

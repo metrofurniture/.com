@@ -252,8 +252,8 @@ ol {
 	margin-top: -13px;
 	margin-left: -13px;
 	border-radius: 60px;
-	animation: loader 0.5s linear infinite;
-	-webkit-animation: loader 0.5s linear infinite;
+	animation: loader 0.3s linear infinite;
+	-webkit-animation: loader 0.3s linear infinite;
 }
 
 @keyframes loader {
@@ -361,9 +361,9 @@ ol {
 	z-index: 9;
 	opacity: 0;
 	visibility: hidden;
-	-webkit-transition: all, 0.2s;
-	-o-transition: all, 0.2s;
-	transition: all, 0.2s;
+	-webkit-transition: all, 0.1s;
+	-o-transition: all, 0.1s;
+	transition: all, 0.1s;
 }
 
 .header__menu ul li .dropdown li {

@@ -46,6 +46,11 @@
         max-width: 100%; /* Ensure images are responsive */
         height: auto; /* Maintain aspect ratio */
     }
+           @keyframes sparkle {
+        0% { text-shadow: 0 0 5px #fff, 0 0 10px #ff7f00; }
+        50% { text-shadow: 0 0 10px #fff, 0 0 20px #ff7f00; }
+        100% { text-shadow: 0 0 5px #fff, 0 0 10px #ff7f00; }
+    }
     </style>
 <body>
     <!-- Page Preloder -->
@@ -380,7 +385,7 @@ Talk to <span style="color:#EE9626;">Metro's Agent</span>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-title">
-                        <span>Our works</span>
+                        <span>Our work</span>
                         <h2>Latest projects</h2>
                     </div>
                 </div>
@@ -903,7 +908,27 @@ Talk to <span style="color:#EE9626;">Metro's Agent</span>
                                 <span>Features</span>
                             </div>
                             <p> Crafted for durability and comfort, our beds feature premium mattresses that ensure a restful night’s sleep. With stylish designs and customizable options, they enhance any bedroom aesthetic..</p>
-                           
+                           <ul style="list-style-type: none; padding: 0; text-align: center; display: flex; flex-direction: column; align-items: center;">
+    <li style="margin: 15px;">
+        <a href="bed.html" 
+           style="display: inline-block; 
+                  padding: 15px 25px; 
+                  font-size: 18px; 
+                  text-decoration: none; 
+                  color: white; 
+                  background-color: #ff7f00; /* Very Bright Orange */
+                  border: 2px solid black; /* Shiny Black Outline */
+                  border-radius: 8px; 
+                  transition: transform 0.3s, box-shadow 0.3s; 
+                  text-shadow: 0 0 5px #fff; 
+                  box-shadow: 0 0 15px black; 
+                  width: calc(100% - 60px); /* Adjust for mobile responsiveness */
+                  max-width: 300px; 
+                  animation: sparkle 1.5s infinite;">
+            Beds
+        </a>
+    </li>
+                               </ul>
                         </div>
                     </div>
                 </div>
@@ -911,11 +936,32 @@ Talk to <span style="color:#EE9626;">Metro's Agent</span>
                     <div class="team__item set-bg" data-setbg="img/team/ab2.jpg">
                         <div class="team__text">
                             <div class="team__title">
-                                <h5>Table</h5>
+                                <h5>Dinning Table</h5>
                                 <span>Features</span>
                             </div>
                             <p>Our tables offer a stylish variety for any setting, built with sturdy materials for long-lasting use. Many feature practical elements, like storage options or expandable designs, making them ideal for modern living.</p>
-                        
+                          <ul style="list-style-type: none; padding: 0; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                                <li style="margin: 15px;">
+        <a href="dinningtable.html" 
+           style="display: inline-block; 
+                  padding: 15px 25px; 
+                  font-size: 18px; 
+                  text-decoration: none; 
+                  color: white; 
+                  background-color: #ff7f00; /* Very Bright Orange */
+                  border: 2px solid black; /* Shiny Black Outline */
+                  border-radius: 8px; 
+                  transition: transform 0.3s, box-shadow 0.3s; 
+                  text-shadow: 0 0 5px #fff; 
+                  box-shadow: 0 0 15px black; 
+                  width: calc(100% - 60px); /* Adjust for mobile responsiveness */
+                  max-width: 300px; 
+                  animation: sparkle 1.5s infinite;">
+            Dining Tables
+        </a>
+    </li>
+</ul>
+
                         </div>
                     </div>
                 </div>
@@ -927,7 +973,27 @@ Talk to <span style="color:#EE9626;">Metro's Agent</span>
                                 <span>Features</span>
                             </div>
                             <p> Engineered for ultimate relaxation, our sofas combine exceptional comfort with versatile styles that fit any decor. Made from durable materials, they are designed for everyday enjoyment and functionality.</p>
-                          
+                            <ul style="list-style-type: none; padding: 0; text-align: center; display: flex; flex-direction: column; align-items: center;">
+                            <li style="margin: 15px;">
+        <a href="sofa.html" 
+           style="display: inline-block; 
+                  padding: 15px 25px; 
+                  font-size: 18px; 
+                  text-decoration: none; 
+                  color: white; 
+                  background-color: #ff7f00; /* Very Bright Orange */
+                  border: 2px solid black; /* Shiny Black Outline */
+                  border-radius: 8px; 
+                  transition: transform 0.3s, box-shadow 0.3s; 
+                  text-shadow: 0 0 5px #fff; 
+                  box-shadow: 0 0 15px black; 
+                  width: calc(100% - 60px); /* Adjust for mobile responsiveness */
+                  max-width: 300px; 
+                  animation: sparkle 1.5s infinite;">
+            Sofas
+        </a>
+    </li>
+                             </ul>
                         </div>
                     </div>
                 </div>

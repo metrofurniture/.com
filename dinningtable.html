@@ -333,7 +333,7 @@
     <!-- Footer Section End -->
 
     <script>
-  const images = [
+ const images = [
     "img/sub/dt1.jpg",
     "img/sub/dt2.jpg",
     "img/sub/dt3.jpg",
@@ -351,6 +351,7 @@
     "img/sub/dt15.jpg"
 ];
 
+// Get the gallery element
 const gallery = document.getElementById('gallery');
 
 // Create gallery items with lazy loading
@@ -358,21 +359,13 @@ images.forEach(src => {
     const galleryItem = document.createElement('div');
     galleryItem.className = 'gallery-item';
 
-    // Create the splash effect div
-    const splashEffect = document.createElement('div');
-    splashEffect.className = 'splash-effect';
-
-    // Create the image element with lazy loading
+    // Create the image element
     const img = document.createElement('img');
     img.setAttribute('data-src', src); // Use data-src for lazy loading
     img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
-    img.className = 'lazy-load'; // Add a class for styling/loading effects
+    img.className = 'lazy'; // Optional: Add class for any styles
 
-    // Handle image click to open overlay
-    img.onclick = () => openOverlay(src);
-
-    // Append both splash and image to the galleryItem
-    galleryItem.appendChild(splashEffect);
+    // Append image to gallery item
     galleryItem.appendChild(img);
     gallery.appendChild(galleryItem);
 });
@@ -385,8 +378,8 @@ const lazyLoadImages = () => {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.getAttribute('data-src'); // Load the image
+                img.onload = () => img.classList.add('loaded'); // Optional: Add loaded class for transitions
                 img.removeAttribute('data-src'); // Remove the data-src attribute
-                img.onload = () => img.classList.add('loaded'); // For fade-in effect (optional)
                 imageObserver.unobserve(img); // Stop observing the loaded image
             }
         });
@@ -399,24 +392,6 @@ const lazyLoadImages = () => {
 
 // Start lazy loading once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", lazyLoadImages);
-
-// Ensure lazy loading works on window resize as well
-window.addEventListener('resize', lazyLoadImages);
-
-function openOverlay(src) {
-    document.getElementById("overlayImage").src = src;
-    document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
-}
-
-function closeOverlay(event) {
-    // Prevent the overlay from closing when the close button is clicked
-    if (event && event.target.classList.contains('close')) {
-        document.getElementById("imageOverlay").style.display = "none"; // Close overlay
-        return;
-    }
-    // Close overlay if clicked outside the image
-    document.getElementById("imageOverlay").style.display = "none"; // Close overlay
-}
     </script>
     
     <!-- Js Plugins -->
@@ -429,6 +404,7 @@ function closeOverlay(event) {
 </body>
 
 </html>
+
 
 
 

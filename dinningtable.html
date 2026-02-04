@@ -333,7 +333,7 @@
     <!-- Footer Section End -->
 
     <script>
- const images = [
+const images = [
     "img/sub/dt1.jpg",
     "img/sub/dt2.jpg",
     "img/sub/dt3.jpg",
@@ -378,7 +378,7 @@ const lazyLoadImages = () => {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.getAttribute('data-src'); // Load the image
-                img.onload = () => img.classList.add('loaded'); // Optional: Add loaded class for transitions
+                img.onload = () => img.classList.add('loaded'); // Add class for scaling on load
                 img.removeAttribute('data-src'); // Remove the data-src attribute
                 imageObserver.unobserve(img); // Stop observing the loaded image
             }
@@ -392,6 +392,7 @@ const lazyLoadImages = () => {
 
 // Start lazy loading once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", lazyLoadImages);
+    
     </script>
     
     <!-- Js Plugins -->
@@ -404,6 +405,7 @@ document.addEventListener("DOMContentLoaded", lazyLoadImages);
 </body>
 
 </html>
+
 
 
 

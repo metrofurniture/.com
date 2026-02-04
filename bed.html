@@ -324,100 +324,109 @@
     <!-- Footer Section End -->
 
     <script>
-      const images = [
-        "img/project/bd20.jpg",
-        "img/project/bd21.jpg",
-        "img/project/bd22.jpg",
-        "img/project/bd23.jpg",
-        "img/project/bd24.jpg",
-        "img/project/bd25.jpg",
-        "img/project/bd26.jpg",
-        "img/project/bd27.jpg",
-        "img/project/bd28.jpg",
-        "img/project/bd29.jpg",
-        "img/project/bd30.jpg",
-        "img/project/bd31.jpg",
-        "img/project/bd32.jpg",
-        "img/project/bd1.jpg",
-        "img/project/bd2.jpg",
-        "img/project/bd3.jpg",
-        "img/project/bd4.jpg",
-        "img/project/bd5.jpg",
-        "img/project/bd6.jpg",
-        "img/project/bd7.jpg",
-        "img/project/bd8.jpg",
-        "img/project/bd9.jpg",
-        "img/project/bd10.jpg",
-        "img/project/bd11.jpg",
-        "img/project/bd12.jpg",
-        "img/project/bd13.jpg",
-        "img/project/bd14.jpg",
-        "img/project/bd15.jpg",
-        "img/project/bd16.jpg",
-        "img/project/bd17.jpg",
-        "img/project/bd18.jpg",
-        "img/project/bd19.jpg"
-    ];
+ const images = [
+    "img/project/bd20.jpg",
+    "img/project/bd21.jpg",
+    "img/project/bd22.jpg",
+    "img/project/bd23.jpg",
+    "img/project/bd24.jpg",
+    "img/project/bd25.jpg",
+    "img/project/bd26.jpg",
+    "img/project/bd27.jpg",
+    "img/project/bd28.jpg",
+    "img/project/bd29.jpg",
+    "img/project/bd30.jpg",
+    "img/project/bd31.jpg",
+    "img/project/bd32.jpg",
+    "img/project/bd1.jpg",
+    "img/project/bd2.jpg",
+    "img/project/bd3.jpg",
+    "img/project/bd4.jpg",
+    "img/project/bd5.jpg",
+    "img/project/bd6.jpg",
+    "img/project/bd7.jpg",
+    "img/project/bd8.jpg",
+    "img/project/bd9.jpg",
+    "img/project/bd10.jpg",
+    "img/project/bd11.jpg",
+    "img/project/bd12.jpg",
+    "img/project/bd13.jpg",
+    "img/project/bd14.jpg",
+    "img/project/bd15.jpg",
+    "img/project/bd16.jpg",
+    "img/project/bd17.jpg",
+    "img/project/bd18.jpg",
+    "img/project/bd19.jpg"
+];
 
-    const gallery = document.getElementById('gallery');
+// Get the gallery element
+const gallery = document.getElementById('gallery');
 
-    images.forEach(src => {
-        const galleryItem = document.createElement('div');
-        galleryItem.className = 'gallery-item';
+// Function to create gallery items
+images.forEach(src => {
+    const galleryItem = document.createElement('div');
+    galleryItem.className = 'gallery-item';
 
-        // Create the splash effect div
-        const splashEffect = document.createElement('div');
-        splashEffect.className = 'splash-effect';
+    // Create the splash effect div
+    const splashEffect = document.createElement('div');
+    splashEffect.className = 'splash-effect';
 
-        // Create the image element with lazy loading
-        const img = document.createElement('img');
-        img.setAttribute('data-src', src); // Use data-src for lazy loading
-        img.alt = `Image ${src.split('/').pop().split('.')[0]}`; 
-        
-        // Handle image click to open overlay
-        img.onclick = () => openOverlay(src);
-        
-        // Append both splash and image to the galleryItem
-        galleryItem.appendChild(splashEffect);
-        galleryItem.appendChild(img);
-        gallery.appendChild(galleryItem);
+    // Create the image element with lazy loading
+    const img = document.createElement('img');
+    img.setAttribute('data-src', src); // Use data-src for lazy loading
+    img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
+
+    // Handle image click to open overlay
+    img.onclick = () => openOverlay(src);
+    
+    // Append both splash and image to the galleryItem
+    galleryItem.appendChild(splashEffect);
+    galleryItem.appendChild(img);
+    gallery.appendChild(galleryItem);
+});
+
+// Lazy load images when they come into view
+const lazyLoadImages = () => {
+    const imagesToLoad = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.getAttribute('data-src'); // Load the image
+                img.onload = () => img.classList.add('loaded'); // Add loaded class for transitions
+                img.removeAttribute('data-src'); // Remove the data-src attribute
+                imageObserver.unobserve(img); // Stop observing the loaded image
+            }
+        });
     });
 
-    // Lazy load images when they come into view
-    const lazyLoadImages = () => {
-        const imagesToLoad = document.querySelectorAll('img[data-src]');
-        const imageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.getAttribute('data-src'); // Load the image
-                    img.removeAttribute('data-src'); // Remove the data-src attribute
-                    observer.unobserve(img); // Stop observing the loaded image
-                }
-            });
-        });
+    imagesToLoad.forEach(image => {
+        imageObserver.observe(image); // Observe each lazily loaded image
+    });
+};
 
-        imagesToLoad.forEach(image => {
-            imageObserver.observe(image); // Observe each lazily loaded image
-        });
-    };
+// Start lazy loading once DOM is fully loaded
+document.addEventListener("DOMContentLoaded", lazyLoadImages);
 
-    document.addEventListener("DOMContentLoaded", lazyLoadImages); // Start lazy loading once DOM is fully loaded
-    
-    function openOverlay(src) {
-        document.getElementById("overlayImage").src = src;
-        document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
-    }
+// Function to open overlay
+function openOverlay(src) {
+    document.getElementById("overlayImage").src = src;
+    document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
+}
 
-    function closeOverlay(event) {
-        // Prevent the overlay from closing when the close button is clicked
-        if (event && event.target.classList.contains('close')) {
-            document.getElementById("imageOverlay").style.display = "none"; // Close overlay
-            return;
-        }
-        // Close overlay if clicked outside the image
+// Function to close overlay
+function closeOverlay(event) {
+    // Prevent the overlay from closing when the close button is clicked
+    if (event && event.target.classList.contains('close')) {
         document.getElementById("imageOverlay").style.display = "none"; // Close overlay
+        return;
     }
+    // Close overlay if clicked outside the image
+    document.getElementById("imageOverlay").style.display = "none"; // Close overlay
+}
+
+// Attach closeOverlay to the overlay
+document.getElementById("imageOverlay").onclick = closeOverlay;
     </script>
     
     <!-- Js Plugins -->
@@ -430,6 +439,7 @@
 </body>
 
 </html>
+
 
 
 

@@ -333,7 +333,7 @@
     <!-- Footer Section End -->
 
     <script>
-    const images = [
+  const images = [
     "img/sub/dt1.jpg",
     "img/sub/dt2.jpg",
     "img/sub/dt3.jpg",
@@ -351,7 +351,6 @@
     "img/sub/dt15.jpg"
 ];
 
-// Get the gallery element
 const gallery = document.getElementById('gallery');
 
 // Create gallery items with lazy loading
@@ -367,6 +366,7 @@ images.forEach(src => {
     const img = document.createElement('img');
     img.setAttribute('data-src', src); // Use data-src for lazy loading
     img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
+    img.className = 'lazy-load'; // Add a class for styling/loading effects
 
     // Handle image click to open overlay
     img.onclick = () => openOverlay(src);
@@ -386,7 +386,8 @@ const lazyLoadImages = () => {
                 const img = entry.target;
                 img.src = img.getAttribute('data-src'); // Load the image
                 img.removeAttribute('data-src'); // Remove the data-src attribute
-                observer.unobserve(img); // Stop observing the loaded image
+                img.onload = () => img.classList.add('loaded'); // For fade-in effect (optional)
+                imageObserver.unobserve(img); // Stop observing the loaded image
             }
         });
     });
@@ -398,6 +399,9 @@ const lazyLoadImages = () => {
 
 // Start lazy loading once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", lazyLoadImages);
+
+// Ensure lazy loading works on window resize as well
+window.addEventListener('resize', lazyLoadImages);
 
 function openOverlay(src) {
     document.getElementById("overlayImage").src = src;
@@ -425,6 +429,7 @@ function closeOverlay(event) {
 </body>
 
 </html>
+
 
 
 

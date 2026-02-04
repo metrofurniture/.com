@@ -1322,6 +1322,36 @@ Talk to <span style="color:#EE9626;">Metro's Agent</span>
 </footer>
 <!-- Footer Section End -->
 
+                        <script>document.addEventListener("DOMContentLoaded", function () {
+    const lazyLoadProjects = () => {
+        const projects = document.querySelectorAll('.project__slider__item[data-setbg]');
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const item = entry.target;
+                    const bgImage = item.getAttribute('data-setbg');
+
+                    // Set the background image
+                    item.style.backgroundImage = `url(${bgImage})`;
+
+                    // Remove the data attribute
+                    item.removeAttribute('data-setbg');
+
+                    // Stop observing once the image has been loaded
+                    projectObserver.unobserve(item);
+                }
+            });
+        });
+
+        projects.forEach(project => {
+            projectObserver.observe(project); // Observe each project item
+        });
+    };
+
+    // Start lazy loading the project images
+    lazyLoadProjects();
+});
+                        </script>
 <!-- Js Plugins -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>

@@ -351,8 +351,22 @@ const images = [
     "img/sub/dt15.jpg"
 ];
 
-// Get the gallery element
+// Get the gallery and overlay elements
 const gallery = document.getElementById('gallery');
+const overlay = document.getElementById('imageOverlay');
+const overlayImage = document.getElementById('overlayImage');
+
+// Function to open the overlay
+const openOverlay = (src) => {
+    overlayImage.src = src; // Set the overlay image source
+    overlay.style.display = 'flex'; // Show the overlay
+};
+
+// Function to close the overlay
+const closeOverlay = (event) => {
+    if (event) event.stopPropagation(); // Prevent triggering the overlay close event
+    overlay.style.display = 'none'; // Hide the overlay
+};
 
 // Create gallery items with lazy loading
 images.forEach(src => {
@@ -364,6 +378,9 @@ images.forEach(src => {
     img.setAttribute('data-src', src); // Use data-src for lazy loading
     img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
     img.className = 'lazy'; // Optional: Add class for any styles
+
+    // Add click event to open overlay
+    img.onclick = () => openOverlay(src);
 
     // Append image to gallery item
     galleryItem.appendChild(img);
@@ -378,7 +395,7 @@ const lazyLoadImages = () => {
             if (entry.isIntersecting) {
                 const img = entry.target;
                 img.src = img.getAttribute('data-src'); // Load the image
-                img.onload = () => img.classList.add('loaded'); // Add class for scaling on load
+                img.onload = () => img.classList.add('loaded'); // Add class for transitions
                 img.removeAttribute('data-src'); // Remove the data-src attribute
                 imageObserver.unobserve(img); // Stop observing the loaded image
             }
@@ -392,7 +409,9 @@ const lazyLoadImages = () => {
 
 // Start lazy loading once DOM is fully loaded
 document.addEventListener("DOMContentLoaded", lazyLoadImages);
-    
+
+// Close overlay when clicking outside the image
+overlay.onclick = closeOverlay;
     </script>
     
     <!-- Js Plugins -->
@@ -405,6 +424,7 @@ document.addEventListener("DOMContentLoaded", lazyLoadImages);
 </body>
 
 </html>
+
 
 
 

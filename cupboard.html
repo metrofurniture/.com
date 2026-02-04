@@ -334,61 +334,84 @@
 
     <script>
         const images = [
-         
-  "img/sub/cp1.jpg",
-  "img/sub/cp2.jpg",
-  "img/sub/cp3.jpg",
-  "img/sub/cp4.jpg",
-  "img/sub/cp5.jpg",
-  "img/sub/cp6.jpg",
-  "img/sub/cp7.jpg",
-  "img/sub/cp8.jpg"
- 
+    "img/sub/cp1.jpg",
+    "img/sub/cp2.jpg",
+    "img/sub/cp3.jpg",
+    "img/sub/cp4.jpg",
+    "img/sub/cp5.jpg",
+    "img/sub/cp6.jpg",
+    "img/sub/cp7.jpg",
+    "img/sub/cp8.jpg"
 ];
 
-        images.forEach(src => {
-  const img = new Image();
-  img.src = src;
-  img.loading = "lazy";   // 👈 ONE LINE
-  document.body.appendChild(img);
+// Get the gallery element
+const gallery = document.getElementById('gallery');
+
+// Create gallery items with lazy loading
+images.forEach(src => {
+    const galleryItem = document.createElement('div');
+    galleryItem.className = 'gallery-item';
+
+    // Create the splash effect div
+    const splashEffect = document.createElement('div');
+    splashEffect.className = 'splash-effect';
+
+    // Create the image element with lazy loading
+    const img = document.createElement('img');
+    img.setAttribute('data-src', src); // Use data-src for lazy loading
+    img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
+
+    // Handle image click to open overlay
+    img.onclick = () => openOverlay(src);
+
+    // Append both splash and image to the galleryItem
+    galleryItem.appendChild(splashEffect);
+    galleryItem.appendChild(img);
+    gallery.appendChild(galleryItem);
 });
-          const gallery = document.getElementById('gallery');
 
-        images.forEach(src => {
-            const galleryItem = document.createElement('div');
-            galleryItem.className = 'gallery-item';
-
-            // Create the splash effect div
-            const splashEffect = document.createElement('div');
-            splashEffect.className = 'splash-effect';
-
-            const img = document.createElement('img');
-            img.src = src;
-            img.alt = `Image ${src.split('/').pop().split('.')[0]}`;
-
-            // Handle image click to open overlay
-            img.onclick = () => openOverlay(src);
-
-            // Append both splash and image to the galleryItem
-            galleryItem.appendChild(splashEffect);
-            galleryItem.appendChild(img);
-            gallery.appendChild(galleryItem);
-        });
-
-        function openOverlay(src) {
-            document.getElementById("overlayImage").src = src;
-            document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
-        }
-
-        function closeOverlay(event) {
-            // Prevent the overlay from closing when the close button is clicked
-            if (event && event.target.classList.contains('close')) {
-                document.getElementById("imageOverlay").style.display = "none"; // Close overlay
-                return;
+// Lazy load images when they come into view
+const lazyLoadImages = () => {
+    const imagesToLoad = document.querySelectorAll('img[data-src]');
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.getAttribute('data-src'); // Load the image
+                img.onload = () => img.classList.add('loaded'); // Optional: Add loaded class
+                img.removeAttribute('data-src'); // Remove the data-src attribute
+                imageObserver.unobserve(img); // Stop observing the loaded image
             }
-            // Close overlay if clicked outside the image
-            document.getElementById("imageOverlay").style.display = "none"; // Close overlay
-        }
+        });
+    });
+
+    imagesToLoad.forEach(image => {
+        imageObserver.observe(image); // Observe each lazily loaded image
+    });
+};
+
+// Start lazy loading once DOM is fully loaded
+document.addEventListener("DOMContentLoaded", lazyLoadImages);
+
+// Function to open overlay
+function openOverlay(src) {
+    document.getElementById("overlayImage").src = src;
+    document.getElementById("imageOverlay").style.display = "flex"; // Open overlay
+}
+
+// Function to close overlay
+function closeOverlay(event) {
+    // Prevent the overlay from closing when the close button is clicked
+    if (event && event.target.classList.contains('close')) {
+        document.getElementById("imageOverlay").style.display = "none"; // Close overlay
+        return;
+    }
+    // Close overlay if clicked outside the image
+    document.getElementById("imageOverlay").style.display = "none"; // Close overlay
+}
+
+// Attach closeOverlay to the overlay
+document.getElementById("imageOverlay").onclick = closeOverlay;
     </script>
     
     <!-- Js Plugins -->
@@ -401,6 +424,7 @@
 </body>
 
 </html>
+
 
 
 

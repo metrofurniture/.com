@@ -1231,31 +1231,31 @@ Talk to <span style="color:#EE9626;">Metro's Agent</span>
 <script src="js/owl.carousel.min.js"></script>
 <script src="js/slick.min.js"></script>
 <script src="js/main.js"></script>
-                        <script>
+        <script>
 document.addEventListener("DOMContentLoaded", function () {
     const lazyLoadImages = () => {
-        const images = document.querySelectorAll("img.lazy");
-        
+        const images = document.querySelectorAll('img.lazy');
+
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.getAttribute("data-src"); 
-                    img.classList.remove("lazy"); 
+                    img.src = img.getAttribute("data-src"); // Set the actual image source
+                    img.classList.remove("lazy"); // Remove the lazy class
                 
-                    observer.unobserve(img);
+                    observer.unobserve(img); // Stop observing this image
                 }
             });
         });
 
         images.forEach(image => {
-            imageObserver.observe(image); 
+            imageObserver.observe(image); // Observe each lazy image
         });
     };
 
-    lazyLoadImages(); 
+    lazyLoadImages(); // Call the lazy loading function
 });
-</script>
+</script>  
 </body>
 
 </html>

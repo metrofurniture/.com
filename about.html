@@ -461,6 +461,12 @@ h2 {
 </footer>
 <!-- Footer Section End -->
 <script>
+    window.addEventListener("load", function () {
+    var preloader = document.getElementById("preloder");
+    if(preloader){
+        preloader.style.display = "none";
+    }
+});
 const faqItems = [
   {
     title: "How to choose the perfect sofa for your living room?",
